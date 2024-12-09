@@ -1,0 +1,85 @@
+{% block content %} {% load static %}
+<link href="{% static '/css/update_prof.css' %}" rel="stylesheet" />
+<div style="background-image:url('{% static "images/assign.jpg" %}');
+background-repeat: no-repeat; background-size: 100%; height:100%">
+<br />
+<h3 align="center">Update the Profile settings</h3>
+<form method="post">
+  {% csrf_token %}
+  <div>
+    <table align="center">
+      <tr>
+        <td>Student Name:</td>
+        <td>
+          <input type="text" name="txtName" value="{{ data.stud_name }}" />
+        </td>
+      </tr>
+      <tr>
+        <td>Student Phno:</td>
+        <td>
+          <input
+            type="number"
+            name="txtPhno"
+            pattern="([+][9][1])?[6-9]{1}\d{9}"
+            value="{{ data.stud_phno }}"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>Student Course:</td>
+        <td>
+          <input
+            type="text"
+            name="txtCourse"
+            value="{{ data.stud_course }}"
+            disabled
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>Student Semster</td>
+        <td>
+          <input
+            type="number"
+            name="txtSem"
+            min="1"
+            max="8"
+            value="{{ data.stud_semester }}"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>Student Password</td>
+        <td>
+          <input
+            type="password"
+            name="txtPswd"
+            value="{{ data.stud_password }}"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>Upload Image</td>
+        <td>
+          <input
+            type="file"
+            name="txtfile"
+            value="{{ data.stud_image }}"
+            required
+          />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <button
+            type="submit"
+            name="btnSub"
+            value="UpdateProfile"
+          />UpdateProfile
+        </td>
+      </tr>
+    </table>
+  </div>
+</form>
+<br />
+{% endblock %}

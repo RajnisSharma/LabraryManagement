@@ -1,0 +1,47 @@
+body {
+  background-image: radial-gradient(circle, #285504, #010b02);
+}
+h2 {
+  text-align: center;
+  font-size: 30px;
+  background-color: blue;
+  color: white;
+  border-radius: 20px;
+  padding: 7px;
+}
+form {
+  font-size: larger;
+  width: 70%;
+  max-width: 400px;
+  padding: 9px;
+  margin: auto;
+  height: 250px;
+  background: #26ebb0f4;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+
+input,
+select {
+  width: 180px;
+}
+
+button {
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 8px 14px;
+  border-radius: 5px;
+}
+button {
+  background: linear-gradient(to right, orange, red);
+  transform: all 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(to right, red, orange);
+}

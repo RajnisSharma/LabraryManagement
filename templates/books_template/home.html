@@ -1,0 +1,21 @@
+{% extends 'navbar/base.html' %} {% block content %} {% load static %}
+<body
+  style="
+    background-image: url('{% static 'images/books.jpg' %}');
+    background-repeat: no-repeat;
+    background-size: 100%;
+  "
+>
+  <h1
+    align="center"
+    style="
+      padding-top: 5%;
+      color: white;
+      height: 565px;
+      text-shadow: 3px 3px 7px #02021e;
+    "
+  >
+    Welcome to Library Management Home Page
+  </h1>
+</body>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New student Registration</title>
+    <link rel="stylesheet" href="{% static '/css/add_stud.css' %}" />
+
+    <script>
+      function showAlert(message) {
+        if (message) {
+          alert(message);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h2 align="center">Student Registration</h2>
+
+    <form action="" method="post">
+      {% csrf_token %}
+      <table>
+        <tr>
+          <td>Student Name:</td>
+          <td><input type="text" name="txtName" /></td>
+        </tr>
+        <tr>
+          <td>Student Phno:</td>
+          <td>
+            <input type="tel" name="txtPhno" pattern="(\+91)?[6-9]{1}\d{9}" />
+          </td>
+        </tr>
+        <tr>
+          <td>Student Course:</td>
+          <td>
+            <select name="ddlCourse" required>
+              <option value="">-----select------</option>
+              {% for i in course %}
+              <option value="{{i.course_name}}">{{i.course_name}}</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Student Semester</td>
+          <td>
+            <input type="number" name="txtSem" min="1" max="8" />
+          </td>
+        </tr>
+        <tr>
+          <td>Student Password</td>
+          <td>
+            <input type="password" name="txtPswd" />
+          </td>
+        </tr>
+        <tr>
+          <td>Upload Picture</td>
+          <td>
+            <input type="file" name="txtfile" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <button type="submit" name="btnSub" value="Register" />Register
+          </td>
+        </tr>
+      </table>
+    </form>
+
+    <script>
+      showAlert("{{ data }}");
+    </script>
+  </body>
+</html>

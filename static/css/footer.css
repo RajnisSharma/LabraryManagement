@@ -1,0 +1,17 @@
+.footer {
+  background-color: #010146;
+  color: white;
+}
+.container {
+  padding: 15px;
+}
+p,
+h5 {
+  text-align: left;
+}
+.list-unstyled {
+  text-align: left;
+}
+hr {
+  border: 1px solid lightblue;
+}

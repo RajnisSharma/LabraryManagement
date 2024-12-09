@@ -1,0 +1,52 @@
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register Page</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}" />
+
+    <script>
+      function showAlert(message) {
+        if (message) {
+          alert(message);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Register Page</h2>
+    <form action="register" method="post">
+      {% csrf_token %}
+
+      <div id="div1">
+        <table align="center">
+          <tr>
+            <td>UserName:</td>
+            <td><input type="text" name="txtUserName" required /></td>
+          </tr>
+          <tr>
+            <td>Password:</td>
+            <td><input type="password" name="txtPswd" /></td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td><input type="email" name="txtEmail" /></td>
+          </tr>
+          
+        </table>
+        <br/>
+        <div align="center" >
+            <button type="submit" name="btnSub" value="Register" />Register</button>         
+        </div>
+      </div>
+    </form>
+    <h3 style="color: red" align='center'>{{ data }}</h3>
+
+    <script>
+      showAlert("{{ data }}");
+    </script>
+  </body>
+</html>
