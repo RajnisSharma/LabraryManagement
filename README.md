@@ -1,9 +1,9 @@
 # LabraryManagement
 Library Management website 
-### Title: Library Management 
-### SystemSubtitle: Built with Django, Python, HTML, CSS, Bootstrap, and JavaScript
-### Presented by: Rajnish Kumar Sharma
-<hr>
+<h3><b>Title:</b> Library Management </h3>
+<h3><b>SystemSubtitle:</b> Built with Django, Python, HTML, CSS, Bootstrap, and JavaScript</h3>
+<h3><b>Presented by:</b> Rajnish Kumar Sharma</h3>
+<hr/>
 ## Introduction
 <li> A Library Management System (LMS) is a software application used to manage library resources and operations.</li>
 <li> It helps in organizing, tracking, and managing book inventories, member records, and transactions efficiently.</li>
