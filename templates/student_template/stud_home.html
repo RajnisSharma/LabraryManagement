@@ -1,0 +1,76 @@
+{% extends 'navbar/stud_base.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="page-wrapper">
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="hero-banner" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); border-radius: 12px; padding: 50px 30px; text-align: center; color: white; margin-bottom: 50px;">
+      <h1 style="font-size: 2.2rem; margin-bottom: 10px; font-weight: 700;">
+        <i class="fas fa-graduation-cap"></i> Welcome, {{ Name }}!
+      </h1>
+      <p style="font-size: 1.1rem; opacity: 0.9; margin: 0;">
+        You're ready to explore the library and manage your books
+      </p>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="row" style="margin-bottom: 50px;">
+      <div class="col">
+        <div class="card text-center">
+          <div class="card-body" style="padding: 30px 20px;">
+            <i class="fas fa-check-circle" style="font-size: 2.5rem; color: var(--success-color); margin-bottom: 15px; display: block;"></i>
+            <h5 class="card-title" style="font-size: 1.1rem; font-weight: 600; margin-bottom: 10px;">Track Issues</h5>
+            <p style="color: var(--text-light); margin-bottom: 15px; font-size: 0.9rem;">View and manage your book issuances and returns</p>
+            <a href="{% url 'stud_books' %}" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.9rem;">View Issues</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card text-center">
+          <div class="card-body" style="padding: 30px 20px;">
+            <i class="fas fa-user-edit" style="font-size: 2.5rem; color: var(--warning-color); margin-bottom: 15px; display: block;"></i>
+            <h5 class="card-title" style="font-size: 1.1rem; font-weight: 600; margin-bottom: 10px;">Update Profile</h5>
+            <p style="color: var(--text-light); margin-bottom: 15px; font-size: 0.9rem;">Keep your profile information up to date</p>
+            <a href="{% url 'getprof' %}" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.9rem;">Edit Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Activity / Info -->
+    <div class="row" style="grid-template-columns: 2fr 1fr; gap: 30px;">
+      <div>
+        <div class="card">
+          <div class="card-header">
+            <h4 style="margin: 0;">Library Overview</h4>
+          </div>
+          <div class="card-body">
+            <p style="color: var(--text-light); margin-bottom: 15px;">
+              Welcome to the Library Management System! Here you can browse available books, 
+              track issued books, manage your profile, and stay organized with your reading journey.
+            </p>
+            <p style="color: var(--text-light); margin: 0;">
+              Use the navigation menu to access different sections and features available to you as a student.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="background-color: var(--light-bg);">
+          <div class="card-body">
+            <h5 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 15px;">Quick Tips</h5>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.95rem;">
+              <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success-color); margin-right: 8px; font-weight: 600;"></i> Check return dates regularly</li>
+              <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success-color); margin-right: 8px; font-weight: 600;"></i> Renew books before expiry</li>
+              <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success-color); margin-right: 8px; font-weight: 600;"></i> Keep your profile updated</li>
+              <li><i class="fas fa-check" style="color: var(--success-color); margin-right: 8px; font-weight: 600;"></i> Report issues promptly</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,196 @@
+:root {
+  --admin-accent: #3498db;
+  --admin-accent-dark: #2c3e50;
+}
+
+.admin-register-page {
+  background:
+    linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(52, 152, 219, 0.88) 100%),
+    url('../images/Library.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100%;
+  padding: 56px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-register-container {
+  width: 100%;
+  max-width: 860px;
+}
+
+.admin-register-card {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--shadow-xl);
+}
+
+.admin-register-card-header {
+  border: none;
+  background: linear-gradient(135deg, var(--admin-accent-dark) 0%, var(--admin-accent) 100%);
+  color: var(--white);
+  padding: 20px 20px;
+  text-align: center;
+}
+
+.admin-register-header-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.14);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+}
+
+.admin-register-header-icon i {
+  font-size: 1.8rem;
+}
+
+.admin-register-card-header h1 {
+  margin: 0;
+  font-weight: 800;
+  font-size: 1.9rem;
+  color: var(--white);
+  letter-spacing: 0.2px;
+}
+
+.admin-register-card-header p {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1rem;
+}
+
+.admin-register-card-body {
+  padding: 28px;
+}
+
+.admin-register-alerts {
+  margin-bottom: 16px;
+}
+
+.admin-register-alert-icon {
+  flex-shrink: 0;
+  margin-right: 10px;
+  margin-top: 2px;
+}
+
+.admin-register-card-body .form-label {
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.admin-register-card-body .required {
+  color: var(--danger-color);
+}
+
+.admin-register-card-body .form-control,
+.admin-register-card-body .form-select {
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  background: rgba(248, 249, 250, 0.95);
+  border-radius: 12px;
+  padding: 12px 14px;
+  transition: var(--transition-fast);
+}
+
+.admin-register-card-body .form-control:focus,
+.admin-register-card-body .form-select:focus {
+  border-color: rgba(52, 152, 219, 0.7);
+  background: var(--white);
+  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.16);
+}
+
+.admin-register-card-body .form-text {
+  color: var(--text-light);
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.admin-register-card-body .form-text i {
+  color: rgba(52, 152, 219, 0.95);
+  margin-right: 6px;
+}
+
+.admin-register-actions {
+  margin-top: 22px;
+  display: grid;
+  gap: 14px;
+}
+
+.admin-register-btn {
+  background: linear-gradient(135deg, var(--admin-accent) 0%, #2e86c1 100%);
+  border: none;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: var(--white);
+  box-shadow: 0 14px 28px rgba(52, 152, 219, 0.25);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.admin-register-btn:hover,
+.admin-register-btn:focus {
+  color: var(--white);
+  filter: brightness(1.02);
+  transform: translateY(-1px);
+  box-shadow: 0 18px 32px rgba(52, 152, 219, 0.3);
+}
+
+.admin-register-btn:active {
+  transform: translateY(0);
+}
+
+.admin-register-help {
+  text-align: center;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.admin-register-help a {
+  color: var(--admin-accent-dark);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.admin-register-help a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+  .admin-register-page {
+    padding: 28px 12px;
+  }
+
+  .admin-register-card-header {
+    padding: 26px 18px;
+  }
+
+  .admin-register-card-body {
+    padding: 20px;
+  }
+
+  .admin-register-card-header h1 {
+    font-size: 1.55rem;
+  }
+
+  .admin-register-header-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-register-container,
+  .admin-register-btn {
+    transition: none !important;
+  }
+}
+

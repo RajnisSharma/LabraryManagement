@@ -1,0 +1,71 @@
+{% extends 'navbar/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="page-wrapper">
+    <div class="container">
+      <div class="page-header">
+        <h1><i class="fas fa-book"></i> Book Details</h1>
+        <p>Manage library inventory and perform updates</p>
+      </div>
+
+      <!-- Django messages -->
+      {% if messages %}
+        <div class="row mb-4">
+          <div class="col-12">
+            {% for msg in messages %}
+              <div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+                <div class="alert-icon"><i class="fas fa-info-circle"></i></div>
+                <div class="alert-content">{{ msg }}</div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="table-wrapper">
+        <table class="table">
+          <thead>
+            <tr>
+              <th><i class="fas fa-book-open"></i> Book</th>
+              <th><i class="fas fa-user-edit"></i> Author</th>
+              <th><i class="fas fa-graduation-cap"></i> Course</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for book in books %}
+              <tr>
+                <td>{{ book.book_name }}</td>
+                <td>{{ book.author_name }}</td>
+                <td>{{ book.course_name }}</td>
+                <td class="text-center">
+                  <div class="table-actions">
+                    <a href="{% url 'up' book.id %}" class="action-btn edit">
+                      <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <a href="{% url 'del' book.id %}" class="action-btn delete">
+                      <i class="fas fa-trash"></i> Delete
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="4">
+                  <div class="empty-state">
+                    <div class="empty-state-icon"><i class="fas fa-books"></i></div>
+                    <h3>No books found</h3>
+                    <p>There are no books in the library yet. Add new books to get started.</p>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

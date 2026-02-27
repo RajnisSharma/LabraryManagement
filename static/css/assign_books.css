@@ -1,0 +1,25 @@
+/* Full‑page repeating background */
+.assign-page {
+  background: url("../images/assign.jpg") repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* Card styling */
+.card {
+  border-radius: 0.75rem;
+}
+
+/* Required field asterisk */
+.text-danger {
+  font-size: 0.9rem;
+}
+
+/* Ensure the container is vertically centered on larger screens */
+@media (min-width: 768px) {
+  .assign-page .container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+}

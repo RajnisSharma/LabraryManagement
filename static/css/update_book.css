@@ -1,0 +1,133 @@
+/*--------------------------------------------------
+  1. Base (mobile-first)
+--------------------------------------------------*/
+.update-page {
+  /* full‑page background */
+  background: url("../images/books.jpg") no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.card {
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+/* center on phones */
+.update-page .container {
+  max-width: 100%;
+}
+
+/*--------------------------------------------------
+  2. Small devices (≥576px)
+--------------------------------------------------*/
+@media (min-width: 576px) {
+  .update-page {
+    padding: 3rem 1.5rem;
+  }
+
+  .update-page .container {
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+/*--------------------------------------------------
+  3. Medium devices (≥768px – tablets)
+--------------------------------------------------*/
+@media (min-width: 768px) {
+  .update-page {
+    padding: 4rem 2rem;
+  }
+
+  /* vertically + horizontally center the row */
+  .update-page .row {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .update-page .container {
+    max-width: 720px;
+  }
+}
+
+/*--------------------------------------------------
+  4. Large devices (≥992px – small laptops)
+--------------------------------------------------*/
+@media (min-width: 992px) {
+  .update-page {
+    padding: 5rem 3rem;
+  }
+
+  .update-page .container {
+    max-width: 960px;
+  }
+
+  .card {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+}
+
+/*--------------------------------------------------
+  5. Extra large (≥1200px – desktops)
+--------------------------------------------------*/
+@media (min-width: 1200px) {
+  .update-page {
+    padding: 6rem 4rem;
+  }
+
+  .update-page .container {
+    max-width: 1140px;
+  }
+
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+/*--------------------------------------------------
+  6. Card Header + Form Overrides
+--------------------------------------------------*/
+.card-header {
+  border-bottom: none;
+  text-align: center;
+}
+
+.form-control,
+.form-select {
+  border-radius: 0.375rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-control-plaintext {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+}
+
+.text-danger {
+  font-size: 0.9rem;
+}
+
+/*--------------------------------------------------
+  7. Utility tweaks
+--------------------------------------------------*/
+.alert {
+  margin-top: 1rem;
+}
+
+.btn-lg {
+  padding: 0.75rem 1.25rem;
+  font-size: 1.125rem;
+}

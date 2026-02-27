@@ -1,0 +1,99 @@
+{% load static %} 
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<!-- FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<footer class="library-footer">
+  <div class="footer-container">
+
+    <!-- Contact Information -->
+    <div class="footer-section">
+      <h5><i class="fas fa-phone"></i> Contact Us</h5>
+      <p>
+        <strong>Phone:</strong><br />
+        <a href="tel:+91-8114530825">+91 9876543210</a>
+      </p>
+      <p>
+        <strong>Email:</strong><br />
+        <a href="mailto:rajnishkumar81145@gmail.com">contact@librarydomain.com</a>
+      </p>
+      <p>
+        <strong>Location:</strong><br />
+        <a href="https://maps.app.goo.gl/TKu2BB3UrDGeE1xs9" target="_blank">
+          <i class="fas fa-map-marker-alt"></i> View on Maps
+        </a>
+      </p>
+    </div>
+
+    <!-- Operating Hours -->
+    <div class="footer-section">
+      <h5><i class="fas fa-clock"></i> Library Hours</h5>
+      <p>
+        <strong>Monday - Friday:</strong><br />
+        9:00 AM - 7:00 PM
+      </p>
+      <p>
+        <strong>Saturday - Sunday:</strong><br />
+        10:00 AM - 5:00 PM
+      </p>
+      <p>
+        <em style="color: #95a5a6;">Holiday hours may vary</em>
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-section">
+      <h5><i class="fas fa-link"></i> Quick Links</h5>
+      <ul>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'displaybook' %}">Browse Catalog</a></li>
+        {% elif user.is_student %}
+          <li><a href="{% url 'stud_books' %}">Browse Catalog</a></li>
+        {% else %}
+          <li><a href="{% url 'public' %}">Browse Catalog</a></li>
+        {% endif %}
+        <li><a href="#">Membership Plans</a></li>
+        <li><a href="#">Events & Workshops</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <!-- About Library -->
+    <div class="footer-section">
+      <h5><i class="fas fa-info-circle"></i> About Us</h5>
+      <p>
+        A modern library management system dedicated to empowering knowledge
+        and fostering a love for reading in our community.
+      </p>
+      <p style="margin-top: 15px; border-top: 1px solid var(--footer-border); padding-top: 15px;">
+        <strong>Version:</strong> 1.0<br />
+        <strong>Last Updated:</strong> 2026
+      </p>
+    </div>
+
+    <!-- Social Media Section -->
+    <div class="social-section">
+      <h5 style="color: #a9db34;">Follow Us On Social Media</h5>
+      <div class="social-icons">
+        <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>
+        <i class="fas fa-copyright"></i> 2026 Library Management System. All rights reserved.
+      </p>
+      <p>Made with <i class="fas fa-heart"></i> for book lovers everywhere</p>
+      <p style="color: #95a5a6; font-size: 0.85rem;">
+        Empowering Knowledge | One Book at a Time
+      </p>
+    </div>
+
+  </div>
+</footer>

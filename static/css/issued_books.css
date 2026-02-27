@@ -1,0 +1,63 @@
+/* Full‑page repeating background */
+.issued-page {
+  background: url("../images/assign.jpg") repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* Title styling */
+.issued-title {
+  text-align: center;
+  font-size: 2rem;
+  background-color: #0d6efd;
+  color: #fff;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Table container styling */
+.table-responsive {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1rem;
+}
+
+/* Icon sizing */
+.icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+/* Border and cell padding adjustments */
+.table th,
+.table td {
+  vertical-align: middle;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+/* Alternate row hover effect */
+.table-hover tbody tr:hover {
+  background-color: #f1f1f1;
+}
+/* ==== MOBILE: turn the table into "cards" ==== */
+@media (max-width: 576px) {
+    .table-light {
+        font-size: 0.875rem;
+    }
+    .issued-title {
+        font-size: 1.5rem;
+    }
+    
+    .table-responsive {
+        padding: 0.3rem;
+    }
+    
+    .table th,
+    .table td {
+        font-size: 0.575rem;
+        padding: 0.2rem;
+    }
+}

@@ -1,0 +1,59 @@
+{% extends 'navbar/base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <div class="page-wrapper">
+    <div class="container py-5">
+      <div class="card mx-auto shadow" style="max-width:600px;">
+        <div class="card-header text-center">
+          <h3 class="mb-0">Add Book</h3>
+        </div>
+        <div class="card-body">
+
+          {# Display Django messages (success, error, etc.) #}
+          {% if messages %}
+            {% for msg in messages %}
+              <div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+                {{ msg }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          <form method="post" novalidate class="needs-validation">
+            {% csrf_token %}
+
+            <div class="mb-3">
+              <label for="id_bookName" class="form-label">Book Name<span class="text-danger">*</span></label>
+              <input type="text" name="txtBookName" id="id_bookName" class="form-control" required>
+              <div class="invalid-feedback">Please enter the book name.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="id_authorName" class="form-label">Author Name<span class="text-danger">*</span></label>
+              <input type="text" name="txtAuthorName" id="id_authorName" class="form-control" required>
+              <div class="invalid-feedback">Please enter the author’s name.</div>
+            </div>
+
+            <div class="mb-4">
+              <label for="id_courseName" class="form-label">Course Name<span class="text-danger">*</span></label>
+              <select name="ddlCourseName" id="id_courseName" class="form-select" required>
+                <option value="" disabled selected>-- Select Course --</option>
+                {% for i in course %}
+                  <option value="{{ i.course_name }}">{{ i.course_name }}</option>
+                {% endfor %}
+              </select>
+              <div class="invalid-feedback">Please select a course.</div>
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary btn-lg">Add Book</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

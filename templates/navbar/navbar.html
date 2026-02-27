@@ -1,0 +1,136 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent py-3" role="navigation" aria-label="Admin navigation">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="{% url 'home' %}">
+      <i class="fas fa-book-open fa-lg" style="color: var(--library-accent-strong)"></i>
+      <span class="fw-bold">Library Management</span>
+      <span class="badge rounded-pill text-bg-light ms-1 d-none d-sm-inline">Admin</span>
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNav"
+      aria-controls="mainNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNav">
+      {% with url_name=request.resolver_match.url_name %}
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item">
+            <a
+              class="nav-link {% if url_name == 'home' %}active{% endif %}"
+              href="{% url 'home' %}"
+              {% if url_name == 'home' %}aria-current="page"{% endif %}
+            >
+              <i class="fas fa-gauge-high me-1"></i> Dashboard
+            </a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle {% if url_name == 'addbook' or url_name == 'displaybook' or url_name == 'up' %}active{% endif %}"
+              href="#"
+              role="button"
+              id="booksMenu"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fas fa-book me-1"></i> Books
+            </a>
+            <ul class="dropdown-menu shadow-lg border-0 rounded-3 mt-2" aria-labelledby="booksMenu">
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="{% url 'addbook' %}">
+                  <i class="fas fa-plus me-2"></i> Add Book
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="{% url 'displaybook' %}">
+                  <i class="fas fa-list me-2"></i> Browse Books
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link {% if url_name == 'getstudent' %}active{% endif %}" href="{% url 'getstudent' %}">
+              <i class="fas fa-users me-1"></i> Students
+            </a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle {% if url_name == 'assignbook' or url_name == 'displayassign' or url_name == 'updt_issue' %}active{% endif %}"
+              href="#"
+              role="button"
+              id="circulationMenu"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fas fa-handshake me-1"></i> Circulation
+            </a>
+            <ul class="dropdown-menu shadow-lg border-0 rounded-3 mt-2" aria-labelledby="circulationMenu">
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="{% url 'assignbook' %}">
+                  <i class="fas fa-hand-holding me-2"></i> Issue / Assign
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="{% url 'displayassign' %}">
+                  <i class="fas fa-clipboard-list me-2"></i> Issued List
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ms-auto mt-3 mt-lg-0 align-items-lg-center gap-2">
+          {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle d-flex align-items-center {% if url_name == 'admin_profile' or url_name == 'update_admin' %}active{% endif %}"
+                href="#"
+                role="button"
+                id="adminMenu"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fas fa-user-circle fa-2x me-2 text-secondary"></i>
+                <span class="d-none d-lg-inline">{{ request.user.username|default:"Account" }}</span>
+                <span class="d-lg-none">Account</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-3 mt-2" aria-labelledby="adminMenu">
+                <li>
+                  <h6 class="dropdown-header">Signed in as {{ request.user.username }}</h6>
+                </li>
+                <li>
+                  <a class="dropdown-item d-flex align-items-center" href="{% url 'admin_profile' %}">
+                    <i class="fas fa-user me-2"></i> My Profile
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item d-flex align-items-center text-danger" href="{% url 'log_out' %}">
+                    <i class="fas fa-sign-out-alt me-2"></i> Logout
+                  </a>
+                </li>
+              </ul>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link btn btn-sm nav-auth-btn" href="{% url 'login' %}">
+                <i class="fas fa-sign-in-alt me-1"></i> Login
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      {% endwith %}
+    </div>
+  </div>
+</nav>

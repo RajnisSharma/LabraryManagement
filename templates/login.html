@@ -1,0 +1,134 @@
+{% extends 'navbar/public_base.html' %}
+{% load static %}
+{% block title %}Library Management System - Login{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+{% endblock %}
+
+{% block content %}
+  {% with role=request.GET.role|default:'student' %}
+    <div class="login-page">
+      <div class="login-container">
+        <div class="login-card">
+          <div class="login-card-header">
+            <h1><i class="fas fa-book-open"></i>Library System</h1>
+            <p>Secure Account Login</p>
+          </div>
+
+          <div class="login-card-body">
+            {% if messages %}
+              <div class="alerts-container">
+                {% for msg in messages %}
+                  <div class="alert alert-{% if msg.tags == 'error' %}danger{% elif msg.tags == 'debug' %}info{% else %}{{ msg.tags }}{% endif %}" role="alert">
+                    <span class="alert-icon">
+                      {% if msg.tags == 'success' %}
+                        <i class="fas fa-check-circle"></i>
+                      {% elif msg.tags == 'error' %}
+                        <i class="fas fa-exclamation-circle"></i>
+                      {% elif msg.tags == 'warning' %}
+                        <i class="fas fa-warning"></i>
+                      {% else %}
+                        <i class="fas fa-info-circle"></i>
+                      {% endif %}
+                    </span>
+                    <div>{{ msg }}</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            {% if data %}
+              <div class="alert alert-danger" role="alert">
+                <span class="alert-icon"><i class="fas fa-exclamation-triangle"></i></span>
+                <div>{{ data }}</div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endif %}
+            
+            <form method="post" action="?role={{ role }}" novalidate>
+              {% csrf_token %}
+
+              <div class="form-group">
+                <label for="id_userName" class="form-label">
+                  <i class="fas fa-user"></i> Username <span class="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="userName"
+                  id="id_userName"
+                  class="form-control {% if form.userName.errors %}is-invalid{% endif %}"
+                  placeholder="Enter your username"
+                  required
+                  autocomplete="username"
+                  autocapitalize="none"
+                  spellcheck="false"
+                  autofocus
+                />
+                {% if form.userName.errors %}
+                  <div class="invalid-feedback">
+                    <i class="fas fa-exclamation-triangle"></i> {{ form.userName.errors.0 }}
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="form-group">
+                <label for="id_userPassword" class="form-label">
+                  <i class="fas fa-lock"></i> Password <span class="required">*</span>
+                </label>
+                <input
+                  type="password"
+                  name="userPassword"
+                  id="id_userPassword"
+                  class="form-control {% if form.userPassword.errors %}is-invalid{% endif %}"
+                  placeholder="Enter your password"
+                  required
+                  autocomplete="current-password"
+                />
+                {% if form.userPassword.errors %}
+                  <div class="invalid-feedback">
+                    <i class="fas fa-exclamation-triangle"></i> {{ form.userPassword.errors.0 }}
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="form-group {% if role != 'admin' %}d-none{% endif %}" id="adminKeyGroup">
+                <label for="id_adminKey" class="form-label">
+                  <i class="fas fa-key"></i> Admin Security Key {% if role == 'admin' %}<span class="required">*</span>{% endif %}
+                </label>
+                <input
+                  type="password"
+                  name="adminKey"
+                  id="id_adminKey"
+                  class="form-control"
+                  placeholder="Required for admin/staff login"
+                  autocomplete="off"
+                  {% if role == 'admin' %}required{% endif %}
+                />
+              </div>
+
+              <button type="submit" class="btn-login">
+                <i class="fas fa-sign-in-alt"></i> Login
+              </button>
+            </form>
+          </div>
+
+          <div class="login-footer">
+            <p>Don't have an account?</p>
+            <div class="signup-links">
+              {% if role == 'admin' %}
+                <a href="{% url 'register' %}" class="admin">
+                  <i class="fas fa-user-tie"></i> Admin/Staff Sign Up
+                </a>
+              {% else %}
+                <a href="{% url 'addstud' %}" class="student">
+                  <i class="fas fa-user-graduate"></i> Student Sign Up
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endwith %}
+{% endblock %}

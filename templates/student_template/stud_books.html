@@ -1,0 +1,51 @@
+{% extends 'navbar/stud_base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="page-wrapper">
+    <div class="container">
+
+      <div class="page-header">
+        <h1><i class="fas fa-book-open"></i> Your Issued Books</h1>
+        <p>Track and manage books issued to you</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="table">
+          <thead>
+            <tr>
+              <th><i class="fas fa-hashtag"></i> ID</th>
+              <th><i class="fas fa-user"></i> Student Name</th>
+              <th><i class="fas fa-book"></i> Book</th>
+              <th><i class="fas fa-calendar-check"></i> Issued Date</th>
+              <th><i class="fas fa-calendar-times"></i> Return Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for rec in data %}
+              <tr>
+                <td>{{ rec.id }}</td>
+                <td>{{ rec.stud_name }}</td>
+                <td>{{ rec.book_name }}</td>
+                <td>{{ rec.start_date }}</td>
+                <td>
+                  <span class="badge badge-primary">{{ rec.end_date }}</span>
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="5">
+                  <div class="empty-state">
+                    <div class="empty-state-icon"><i class="fas fa-inbox"></i></div>
+                    <h3>No books issued</h3>
+                    <p>You haven't issued any books yet. Visit the library or contact the librarian to get started.</p>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

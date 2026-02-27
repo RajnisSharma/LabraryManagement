@@ -1,0 +1,16 @@
+/* Full‑page repeating background */
+.add-book-page {
+  background: url("../images/books.jpg") repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* Slightly transparent card so the background peeks through */
+.card {
+  border-radius: 1rem;
+}
+
+/* Required‑field asterisk styling */
+.text-danger {
+  font-size: 0.9rem;
+}

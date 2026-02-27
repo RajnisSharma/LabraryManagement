@@ -1,0 +1,60 @@
+{% extends 'navbar/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="hero-section">
+  <div class="hero-content">
+    <h1><i class="fas fa-book-open"></i> Welcome to Library Management</h1>
+    <div class="hero-buttons">
+      <a href="{% url 'displaybook' %}" class="hero-btn primary">
+        <i class="fas fa-search"></i> Browse Books
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Statistics Section -->
+<section class="stats-section">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="stat-card">
+          <div class="stat-number">
+            <i class="fas fa-book"></i> 1000+
+          </div>
+          <div class="stat-label">Books Available</div>
+          <p class="stat-description">Vast collection across various genres</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="stat-card">
+          <div class="stat-number">
+            <i class="fas fa-users"></i> 500+
+          </div>
+          <div class="stat-label">Active Members</div>
+          <p class="stat-description">Growing community of readers</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="stat-card">
+          <div class="stat-number">
+            <i class="fas fa-check-circle"></i> 100%
+          </div>
+          <div class="stat-label">Satisfaction Rate</div>
+          <p class="stat-description">Dedicated to member success</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="stat-card">
+          <div class="stat-number">
+            <i class="fas fa-globe"></i> 24/7
+          </div>
+          <div class="stat-label">Online Access</div>
+          <p class="stat-description">Manage your library anytime</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

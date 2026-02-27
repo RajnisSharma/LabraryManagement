@@ -1,0 +1,122 @@
+{% extends 'navbar/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="page-wrapper">
+    <div class="container py-5">
+      <div class="d-flex align-items-center justify-content-center min-vh-5">
+        <div class="col-max-8 col-min-10">
+
+          <div class="card shadow-sm">
+            <div class="card-header text-center">
+              <h3 class="mb-0"><i class="fas fa-edit me-2"></i>Update Book</h3>
+              <nav aria-label="breadcrumb" class="mt-2">
+                <ol class="breadcrumb justify-content-center mb-0">
+                  <li class="breadcrumb-item"><a href="{% url 'displaybook' %}">Books</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Update</li>
+                </ol>
+              </nav>
+            </div>
+            <div class="card-body">
+
+              {% if messages %}
+                {% for msg in messages %}
+                  <div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+                    {{ msg }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+
+              <form method="post" class="needs-validation" novalidate>
+                {% csrf_token %}
+
+                <div class="mb-3">
+                  <label for="id_bookName" class="form-label">Book Name<span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    id="id_bookName"
+                    name="txtBookName"
+                    class="form-control"
+                    value="{{ books.book_name }}"
+                    required
+                  >
+                  <div class="invalid-feedback">
+                    Please enter the book name.
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="id_authorName" class="form-label">Author Name<span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    id="id_authorName"
+                    name="txtAuthorName"
+                    class="form-control"
+                    value="{{ books.author_name }}"
+                    required
+                  >
+                  <div class="invalid-feedback">
+                    Please enter the author’s name.
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <label for="id_courseName" class="form-label">Course Name<span class="text-danger">*</span></label>
+                  <select
+                    id="id_courseName"
+                    name="ddlCourseName"
+                    class="form-select"
+                    required
+                  >
+                    <option value="" disabled>-- Select Course --</option>
+                    {% for course_item in course %}
+                      <option
+                        value="{{ course_item.course_name }}"
+                        {% if course_item.course_name == books.course_name %}selected{% endif %}
+                      >
+                        {{ course_item.course_name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select a course.
+                  </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                  <button type="submit" class="btn btn-primary btn-lg flex-grow-1">
+                    <i class="fas fa-save me-1"></i> Update Book
+                  </button>
+                  <a href="{% url 'displaybook' %}" class="btn btn-outline-secondary btn-lg">
+                    <i class="fas fa-times me-1"></i> Cancel
+                  </a>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS + validation handler -->
+  <script>
+    (function () {
+      'use strict';
+      var forms = document.querySelectorAll('.needs-validation');
+      Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    })();
+  </script>
+{% endblock %}
+

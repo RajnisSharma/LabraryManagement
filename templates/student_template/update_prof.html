@@ -1,0 +1,86 @@
+{% extends 'navbar/stud_base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="page-wrapper">
+    <div class="container py-5">
+      <div class="card mx-auto shadow" style="max-width: 600px;">
+        <div class="card-header">
+          <h3>Update Profile</h3>
+        </div>
+        <div class="card-body">
+
+          {% if messages %}
+            {% for msg in messages %}
+              <div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+                {{ msg }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          <form method="post" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+
+            <div class="mb-3">
+              <label for="id_name" class="form-label">Student Name<span class="text-danger">*</span></label>
+              <input type="text" id="id_name" name="txtName" class="form-control" value="{{ data.stud_name }}" required>
+              <div class="invalid-feedback">Please enter student name.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="id_phno" class="form-label">Phone Number<span class="text-danger">*</span></label>
+              <input type="tel" id="id_phno" name="txtPhno" class="form-control" pattern="(\+91)?[6-9]\d{9}" value="{{ data.stud_phno }}" required>
+              <div class="invalid-feedback">Enter a valid phone number.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="id_course" class="form-label">Course</label>
+              <input type="text" id="id_course" name="txtCourse" class="form-control" value="{{ data.stud_course }}" readonly>
+              <small class="text-muted">Course cannot be changed after registration.</small>
+            </div>
+
+            <div class="mb-3">
+              <label for="id_sem" class="form-label">Semester<span class="text-danger">*</span></label>
+              <input type="number" id="id_sem" name="txtSem" class="form-control" min="1" max="8" value="{{ data.stud_semester }}" required>
+              <div class="invalid-feedback">Enter a semester between 1 and 8.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="id_pswd" class="form-label">Password<span class="text-danger">*</span></label>
+              <input type="password" id="id_pswd" name="txtPswd" class="form-control" minlength="6" value="{{ data.stud_password }}" required>
+              <div class="invalid-feedback">Password must be at least 6 characters.</div>
+            </div>
+
+            <div class="mb-4">
+              <label for="id_file" class="form-label">Upload Profile Picture</label>
+              <input type="file" id="id_file" name="txtfile" class="form-control" accept="image/*">
+              <small class="text-muted">Leave empty to keep current image.</small>
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary btn-lg">Update Profile</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+      var forms = document.querySelectorAll('form[novalidate]');
+      Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    })();
+  </script>
+{% endblock %}

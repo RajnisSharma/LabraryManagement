@@ -1,0 +1,190 @@
+{% extends 'navbar/public_base.html' %}
+{% load static %}
+
+{% block title %}Library Management System - Admin/Staff Registration{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/register.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="admin-register-page">
+    <div class="admin-register-container">
+      <div class="card admin-register-card">
+        <div class="card-header admin-register-card-header">
+          <div class="admin-register-header-icon" aria-hidden="true">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h1>Admin / Staff Registration</h1>
+          <p>Creating an admin account requires the Admin Security Key.</p>
+        </div>
+
+        <div class="card-body admin-register-card-body">
+          {% if messages %}
+            <div class="admin-register-alerts">
+              {% for m in messages %}
+                <div class="alert alert-{% if m.tags == 'error' %}danger{% elif m.tags == 'debug' %}info{% else %}{{ m.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                  <span class="admin-register-alert-icon" aria-hidden="true">
+                    {% if m.tags == 'success' %}
+                      <i class="fas fa-check-circle"></i>
+                    {% elif m.tags == 'error' %}
+                      <i class="fas fa-exclamation-circle"></i>
+                    {% elif m.tags == 'warning' %}
+                      <i class="fas fa-warning"></i>
+                    {% else %}
+                      <i class="fas fa-info-circle"></i>
+                    {% endif %}
+                  </span>
+                  <div>{{ m }}</div>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {% if data %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <span class="admin-register-alert-icon" aria-hidden="true"><i class="fas fa-exclamation-triangle"></i></span>
+              <div>{{ data }}</div>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endif %}
+
+          <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+            {% csrf_token %}
+
+            <div class="row g-2">
+              <div class="col-12 col-md-auto">
+                <label for="id_name" class="form-label">
+                  <i class="fas fa-user me-2 text-primary"></i>Username <span class="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="id_name"
+                  name="txtUserName"
+                  class="form-control {% if form.txtUserName.errors %}is-invalid{% endif %}"
+                  placeholder="Enter your username"
+                  required
+                  autocomplete="username"
+                  autocapitalize="none"
+                  spellcheck="false"
+                  autofocus
+                />
+                {% if form.txtUserName.errors %}
+                  <div class="invalid-feedback">
+                    <i class="fas fa-exclamation-triangle"></i> {{ form.txtUserName.errors.0 }}
+                  </div>
+                {% else %}
+                  <div class="form-text"><i class="fas fa-info-circle"></i> Username must be unique.</div>
+                {% endif %}
+              </div>
+
+              <div class="col-12 col-md-auto">
+                <label for="id_email" class="form-label">
+                  <i class="fas fa-envelope me-2 text-primary"></i>Email Address <span class="required">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="id_email"
+                  name="txtEmail"
+                  class="form-control {% if form.txtEmail.errors %}is-invalid{% endif %}"
+                  placeholder="name@example.com"
+                  required
+                  autocomplete="email"
+                />
+                {% if form.txtEmail.errors %}
+                  <div class="invalid-feedback">
+                    <i class="fas fa-exclamation-triangle"></i> {{ form.txtEmail.errors.0 }}
+                  </div>
+                {% else %}
+                  <div class="form-text"><i class="fas fa-info-circle"></i> We'll never share your email.</div>
+                {% endif %}
+              </div>
+
+              <div class="col-12 col-md-auto">
+                <label for="id_pswd" class="form-label">
+                  <i class="fas fa-lock me-2 text-primary"></i>Password <span class="required">*</span>
+                </label>
+                <input
+                  type="password"
+                  id="id_pswd"
+                  name="txtPswd"
+                  class="form-control {% if form.txtPswd.errors %}is-invalid{% endif %}"
+                  placeholder="Create a password"
+                  minlength="6"
+                  required
+                  autocomplete="new-password"
+                />
+                {% if form.txtPswd.errors %}
+                  <div class="invalid-feedback">
+                    <i class="fas fa-exclamation-triangle"></i> {{ form.txtPswd.errors.0 }}
+                  </div>
+                {% else %}
+                  <div class="form-text"><i class="fas fa-shield-alt"></i> Minimum 6 characters required.</div>
+                {% endif %}
+              </div>
+
+              <div class="col-12 col-md-auto">
+                <label for="id_admin_key" class="form-label">
+                  <i class="fas fa-key me-2 text-primary"></i>Admin Security Key <span class="required">*</span>
+                </label>
+                <input
+                  type="password"
+                  id="id_admin_key"
+                  name="txtAdminKey"
+                  class="form-control"
+                  placeholder="Enter admin security key"
+                  required
+                  autocomplete="off"
+                />
+                <div class="form-text"><i class="fas fa-shield-alt"></i> Required to create an admin/staff account.</div>
+              </div>
+
+              <div class="col-12 col-md-auto">
+                <label for="id_profile_image" class="form-label">
+                  <i class="fas fa-image me-2 text-primary"></i>Profile Picture
+                </label>
+                <input
+                  type="file"
+                  id="id_profile_image"
+                  name="txtProfileImage"
+                  class="form-control"
+                  accept="image/*"
+                />
+                <div class="form-text"><i class="fas fa-camera"></i> Optional. You can upload this later from your profile.</div>
+              </div>
+            </div>
+
+            <div class="admin-register-actions">
+              <button type="submit" class="btn admin-register-btn btn-lg w-100">
+                <i class="fas fa-user-check me-2"></i>Create Account
+              </button>
+
+              <p class="admin-register-help mb-0">
+                Already have an account? <a href="{% url 'login' %}?role=admin">Back to Login</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+    (function () {
+      'use strict';
+      const forms = document.querySelectorAll('.needs-validation');
+      Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    })();
+  </script>
+{% endblock %}

@@ -1,0 +1,480 @@
+/* ============================================
+   Issued Books - Professional Styling
+   ============================================ */
+
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --success-color: #27ae60;
+  --danger-color: #e74c3c;
+  --warning-color: #f39c12;
+  --light-bg: #ecf0f1;
+  --white: #ffffff;
+  --text-dark: #333333;
+  --text-light: #666666;
+  --border-color: #e0e0e0;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-dark);
+}
+
+body {
+  background: linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 100%);
+  background-attachment: fixed;
+}
+
+/* Page */
+.issued-page {
+  padding: 40px 20px;
+  min-height: calc(100vh - 120px);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Page Header */
+.page-header {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: slideDown 0.6s ease-out;
+}
+
+.page-header h1 {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.page-header h1 i {
+  color: var(--secondary-color);
+  font-size: 2.8rem;
+}
+
+.page-header p {
+  color: var(--secondary-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.issued-title {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Alert Styles */
+.alert {
+  border: none;
+  border-radius: 8px;
+  border-left: 4px solid;
+  padding: 15px 20px;
+  margin-bottom: 30px;
+  animation: slideIn 0.3s ease-out;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.alert strong {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.alert strong i {
+  font-size: 1.1rem;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  border-left-color: var(--success-color);
+  color: #155724;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border-left-color: var(--danger-color);
+  color: #721c24;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  border-left-color: var(--warning-color);
+  color: #856404;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  border-left-color: #17a2b8;
+  color: #0c5460;
+}
+
+.alert .btn-close {
+  padding: 0;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%23000' d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+  background-size: 1em 1em;
+  width: 1em;
+  height: 1em;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.alert .btn-close:hover {
+  opacity: 0.75;
+}
+
+/* Table Responsive Container */
+.table-responsive {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.6s ease-out;
+  background: var(--white);
+}
+
+/* Table */
+.table {
+  margin: 0;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+}
+
+.table thead th {
+  color: var(--white);
+  font-weight: 600;
+  border: none;
+  padding: 18px 12px;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+}
+
+.table thead th i {
+  margin-right: 6px;
+  font-size: 1rem;
+}
+
+.table tbody {
+  background: var(--white);
+}
+
+.table tbody tr {
+  transition: var(--transition);
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+  box-shadow: inset 2px 0 0 var(--secondary-color);
+}
+
+.table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.table tbody td {
+  padding: 16px 12px;
+  color: var(--text-dark);
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+.table tbody .badge {
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.badge.bg-secondary {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, #2980b9 100%) !important;
+}
+
+/* Icons in Table */
+.table tbody i {
+  margin-right: 4px;
+  font-size: 0.95rem;
+}
+
+.table tbody i.fa-calendar-alt {
+  color: var(--secondary-color);
+}
+
+.table tbody i.fa-calendar-check {
+  color: var(--success-color);
+}
+
+/* Action Links */
+.table tbody a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: var(--transition);
+  margin-right: 5px;
+}
+
+.update-link {
+  color: var(--secondary-color);
+  background-color: #e3f2fd;
+  border: 1px solid var(--secondary-color);
+}
+
+.update-link:hover {
+  background-color: var(--secondary-color);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.delete-link {
+  color: var(--danger-color);
+  background-color: #ffebee;
+  border: 1px solid var(--danger-color);
+}
+
+.delete-link:hover {
+  background-color: var(--danger-color);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.update-link i,
+.delete-link i {
+  font-size: 0.9rem;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  background: var(--white);
+  border-radius: 12px;
+  color: #6c757d;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.6s ease-out;
+}
+
+.empty-state i {
+  font-size: 4rem;
+  color: #ccc;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+
+.empty-state p strong {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .page-header p {
+    font-size: 1rem;
+  }
+
+  .issued-title {
+    font-size: 1.5rem;
+  }
+
+  .table thead th {
+    font-size: 0.8rem;
+    padding: 12px 8px;
+  }
+
+  .table tbody td {
+    font-size: 0.9rem;
+    padding: 12px 8px;
+  }
+
+  .table tbody a {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    margin-right: 3px;
+  }
+
+  .alert {
+    flex-direction: column;
+    font-size: 0.95rem;
+  }
+
+  .empty-state {
+    padding: 60px 20px;
+  }
+
+  .empty-state i {
+    font-size: 3rem;
+  }
+
+  .empty-state p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header h1 {
+    font-size: 1.5rem;
+    gap: 8px;
+  }
+
+  .page-header h1 i {
+    font-size: 2rem;
+  }
+
+  .issued-title {
+    font-size: 1.2rem;
+  }
+
+  .table {
+    font-size: 0.85rem;
+  }
+
+  .table thead th {
+    font-size: 0.7rem;
+    padding: 8px 4px;
+  }
+
+  .table tbody td {
+    font-size: 0.8rem;
+    padding: 8px 4px;
+  }
+
+  .table tbody a {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+    display: block;
+    margin: 3px 0;
+  }
+
+  .table tbody a i {
+    display: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: none;
+  }
+
+  .table-responsive {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .table tbody a {
+    display: none;
+  }
+
+  .page-header {
+    break-inside: avoid;
+  }
+
+  .alert {
+    display: none;
+  }
+}
+
+/* Accessibility */
+.table tbody a:focus {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
+}
+
+/* Scrollbar Styling */
+.table-responsive::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}

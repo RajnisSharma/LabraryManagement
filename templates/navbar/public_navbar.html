@@ -1,0 +1,90 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent py-3" role="navigation" aria-label="Public navigation">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="{% url 'public' %}">
+      <i class="fas fa-book-open fa-lg" style="color: var(--library-accent-strong)"></i>
+      <span class="fw-bold">Library Management</span>
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#publicNav"
+      aria-controls="publicNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="publicNav">
+      {% with url_name=request.resolver_match.url_name %}
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item">
+            <a
+              class="nav-link {% if url_name == 'public' %}active{% endif %}"
+              href="{% url 'public' %}"
+              {% if url_name == 'public' %}aria-current="page"{% endif %}
+            >
+              <i class="fas fa-home me-1"></i> Home
+            </a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ms-auto mt-3 mt-lg-0 align-items-lg-center gap-2">
+          <li class="nav-item dropdown">
+            <button
+              type="button"
+              class="nav-link btn btn-sm nav-auth-btn dropdown-toggle {% if url_name == 'login' %}active{% endif %}"
+              id="publicLoginMenu"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fas fa-sign-in-alt me-1"></i> Login
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-3 mt-2" aria-labelledby="publicLoginMenu">
+              <li><h6 class="dropdown-header">Choose account type</h6></li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="{% url 'login' %}?role=admin">
+                  <i class="fas fa-user-tie me-2"></i> Admin/Staff Login
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="{% url 'login' %}?role=student">
+                  <i class="fas fa-user-graduate me-2"></i> Student Login
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <button
+              type="button"
+              class="nav-link btn btn-sm nav-auth-btn nav-auth-btn--solid dropdown-toggle {% if url_name == 'register' or url_name == 'addstud' %}active{% endif %}"
+              id="publicRegisterMenu"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fas fa-user-plus me-1"></i> Register
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-3 mt-2" aria-labelledby="publicRegisterMenu">
+              <li><h6 class="dropdown-header">Create an account</h6></li>
+              <li >
+                <a class="dropdown-item d-flex align-items-center" href="{% url 'register' %}">
+                  <i class="fas fa-user-tie me-2"></i> Admin/Staff Register
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="{% url 'addstud' %}">
+                  <i class="fas fa-user-graduate me-2"></i> Student Register
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      {% endwith %}
+    </div>
+  </div>
+</nav>

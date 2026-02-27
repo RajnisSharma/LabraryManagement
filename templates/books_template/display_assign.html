@@ -1,0 +1,335 @@
+{% extends 'navbar/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  :root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --success-color: #27ae60;
+    --danger-color: #e74c3c;
+    --warning-color: #f39c12;
+    --light-bg: #ecf0f1;
+    --white: #ffffff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  body {
+    background: linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .issued-page {
+    padding: 40px 0;
+    min-height: calc(100vh - 200px);
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: slideDown 0.6s ease-out;
+  }
+
+  .page-header h1 {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+
+  .page-header p {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .issued-title {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .table-responsive {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .table {
+    margin: 0;
+  }
+
+  .table thead {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  }
+
+  .table thead th {
+    color: var(--white);
+    font-weight: 600;
+    border: none;
+    padding: 18px 12px;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .table tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .table tbody tr:hover {
+    background-color: #f8f9fa;
+    box-shadow: inset 2px 0 0 var(--secondary-color);
+  }
+
+  .table tbody td {
+    padding: 16px 12px;
+    color: var(--primary-color);
+    font-weight: 500;
+    vertical-align: middle;
+  }
+
+  .table tbody .icon {
+    max-width: 20px;
+    margin-right: 5px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .table tbody a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .table tbody a.update-link {
+    color: var(--secondary-color);
+    background-color: #e3f2fd;
+  }
+
+  .table tbody a.update-link:hover {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+
+  .table tbody a.delete-link {
+    color: var(--danger-color);
+    background-color: #ffebee;
+  }
+
+  .table tbody a.delete-link:hover {
+    background-color: var(--danger-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+
+  .alert {
+    border: none;
+    border-radius: 8px;
+    border-left: 4px solid;
+    margin-bottom: 30px;
+    animation: slideIn 0.3s ease-out;
+  }
+
+  .alert-success {
+    background-color: #d4edda;
+    border-left-color: var(--success-color);
+    color: #155724;
+  }
+
+  .alert-danger {
+    background-color: #f8d7da;
+    border-left-color: var(--danger-color);
+    color: #721c24;
+  }
+
+  .alert-warning {
+    background-color: #fff3cd;
+    border-left-color: var(--warning-color);
+    color: #856404;
+  }
+
+  .alert-info {
+    background-color: #d1ecf1;
+    border-left-color: #17a2b8;
+    color: #0c5460;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--white);
+    border-radius: 12px;
+    color: #6c757d;
+  }
+
+  .empty-state i {
+    font-size: 3rem;
+    color: #ccc;
+    margin-bottom: 20px;
+  }
+
+  .empty-state p {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .issued-title {
+      font-size: 1.5rem;
+    }
+
+    .table thead th {
+      font-size: 0.8rem;
+      padding: 12px 8px;
+    }
+
+    .table tbody td {
+      font-size: 0.9rem;
+      padding: 12px 8px;
+    }
+
+    .table tbody a {
+      font-size: 0.8rem;
+      padding: 4px 8px;
+    }
+  }
+</style>
+
+  <div class="issued-page">
+    <div class="container">
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1><i class="fas fa-book-reader"></i> Issued Books Management</h1>
+        <p>Track and Manage All Issued Books</p>
+      </div>
+
+      {# Django messages #}
+      {% if messages %}
+        {% for msg in messages %}
+          <div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+            <strong>
+              {% if msg.tags == 'success' %}
+                <i class="fas fa-check-circle"></i> Success!
+              {% elif msg.tags == 'danger' %}
+                <i class="fas fa-exclamation-circle"></i> Error!
+              {% elif msg.tags == 'warning' %}
+                <i class="fas fa-exclamation-triangle"></i> Warning!
+              {% else %}
+                <i class="fas fa-info-circle"></i> Info
+              {% endif %}
+            </strong>
+            {{ msg }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% if issue_list %}
+        <div class="table-responsive shadow-sm rounded bg-white">
+          <table class="table table-bordered table-hover mb-0">
+            <thead>
+              <tr>
+                <th scope="col"><i class="fas fa-hashtag"></i> ID</th>
+                <th scope="col"><i class="fas fa-user"></i> Student Name</th>
+                <th scope="col"><i class="fas fa-book"></i> Issued Book</th>
+                <th scope="col"><i class="fas fa-calendar-plus"></i> Issued Date</th>
+                <th scope="col"><i class="fas fa-calendar-times"></i> Return Date</th>
+                <th class="text-center" scope="col"><i class="fas fa-tools"></i> Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for issue in issue_list %}
+                <tr>
+                  <td><span class="badge bg-secondary">{{ issue.id }}</span></td>
+                  <td><strong>{{ issue.stud_name }}</strong></td>
+                  <td>{{ issue.book_name }}</td>
+                  <td>
+                    <i class="fas fa-calendar-alt" style="color: var(--secondary-color);"></i>
+                    {{ issue.start_date|date:"d M, Y" }}
+                  </td>
+                  <td>
+                    <i class="fas fa-calendar-check" style="color: var(--success-color);"></i>
+                    {{ issue.end_date|date:"d M, Y" }}
+                  </td>
+                  <td class="text-center">
+                    <a href="{% url 'updt_issue' issue.id %}" class="update-link" title="Update Issue">
+                      <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <a href="{% url 'del_issue' issue.id %}" class="delete-link" title="Delete Issue" onclick="return confirm('Are you sure?');">
+                      <i class="fas fa-trash-alt"></i> Delete
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <div class="empty-state">
+          <i class="fas fa-inbox"></i>
+          <p><strong>No issued books found.</strong></p>
+          <p>Get started by assigning books to students.</p>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <!-- Bootstrap JS loads from navbar/base.html -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+{% endblock %}
+
+
+

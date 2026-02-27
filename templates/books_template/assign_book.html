@@ -1,0 +1,154 @@
+{% extends 'navbar/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="page-wrapper">
+    <div class="container">
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1><i class="fas fa-book-open"></i> Book Assignment System</h1>
+        <p>Manage Student Book Assignments</p>
+      </div>
+      
+      <div class="card mx-auto shadow" style="max-width:700px;">
+        <div class="card-header text-center">
+          <h3 class="mb-0">Assign Book</h3>
+        </div>
+        <div class="card-body">
+
+          {% if messages %}
+            {% for msg in messages %}
+              <div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+                {{ msg }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          <div class="mb-3">
+            <form method="post" action="{% url 'getstudent' %}" class="row g-2">
+              {% csrf_token %}
+              <div class="col-auto" style="min-width:220px;">
+                <input type="text" name="txtPhno" id="id_phno" class="form-control" placeholder="Student mobile number" required pattern="[0-9]{10}" title="Enter 10 digit mobile number">
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-secondary">Retrieve Data</button>
+              </div>
+            </form>
+          </div>
+
+          <form method="post" action="{% url 'assignbook' %}" novalidate class="needs-validation">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="id_name" class="form-label">Student Name</label>
+              <input
+                type="text"
+                id="id_name"
+                name="txtName"
+                value="{{ Stud.stud_name|default:'' }}"
+                class="form-control"
+                placeholder="Student name (auto-filled)"
+                required
+                readonly
+              >
+              <i class="fas fa-user"></i>
+              <div class="invalid-feedback">
+                <i class="fas fa-times-circle"></i> Student information must be loaded first.
+              </div>
+              <small class="form-text">
+                <i class="fas fa-info-circle"></i> Click "Retrieve Data" to load student information.
+              </small>
+            </div>
+
+            <div class="mb-3">
+              <label for="id_book" class="form-label">Select Book<span class="text-danger">*</span></label>
+              <select id="id_book" name="ddlBookName" class="form-select" required>
+                <option value="" disabled selected>-- Select Book --</option>
+                {% for b in Books %}
+                  <option value="{{ b.book_name }}">{{ b.book_name }}</option>
+                {% endfor %}
+              </select>
+              <div class="invalid-feedback">Please choose a book.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="id_start" class="form-label">Issuance Date<span class="text-danger">*</span></label>
+              <div class="input-group-icon">
+                <input type="date" id="id_start" name="txtStartDate" class="form-control" required>
+                <i class="fas fa-calendar-day"></i>
+              </div>
+              <div class="invalid-feedback">Please choose an issuance date.</div>
+            </div>
+            <div class="mb-3">
+              <label for="id_end" class="form-label">Expected Return Date
+                <span class="required">*</span>
+              </label>
+                  <div class="input-group-icon">
+                    <input
+                      type="date"
+                      id="id_end"
+                      name="txtEndDate"
+                      class="form-control"
+                      required
+                    >
+                    <i class="fas fa-calendar-check"></i>
+                  </div>
+                  <div class="invalid-feedback">
+                    <i class="fas fa-times-circle"></i> Please select the expected return date.
+                  </div>
+                  <small class="form-text">
+                    <i class="fas fa-info-circle"></i> Expected date for book return from the student.
+                  </small>
+                </div>
+
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-plus-circle"></i> Assign Book
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS loads from navbar/base.html -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  
+  <script>
+    // Form validation
+    (function () {
+      'use strict';
+      let forms = document.querySelectorAll('.needs-validation');
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    })();
+
+    // Date validation
+    document.getElementById('id_end').addEventListener('change', function () {
+      const startDate = new Date(document.getElementById('id_start').value);
+      const endDate = new Date(this.value);
+      
+      if (startDate > endDate) {
+        this.setCustomValidity('Return date must be after issuance date.');
+      } else {
+        this.setCustomValidity('');
+      }
+    });
+  </script>
+{% endblock %}
+
+
+
+ 
