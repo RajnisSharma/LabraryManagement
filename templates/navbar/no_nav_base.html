@@ -7,6 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Library Management System - Student Portal (No Nav)" />
   <title>Library Management System</title>
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('lms-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.setAttribute('data-bs-theme', theme);
+      } catch (error) {}
+    })();
+  </script>
 
   <!-- Bootstrap CSS -->
   <link
@@ -29,6 +40,7 @@
   <link rel="stylesheet" href="{% static 'css/tablet.css' %}" media="(min-width: 768px)" />
   <link rel="stylesheet" href="{% static 'css/desktop.css' %}" media="(min-width: 992px)" />
   <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+  <script src="{% static 'js/theme_toggle.js' %}" defer></script>
 
   {% block extra_css %} {% endblock %}
 

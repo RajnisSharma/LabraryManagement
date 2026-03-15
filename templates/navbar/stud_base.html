@@ -7,6 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Library Management System - Student Portal" />
   <title>Library Management System - Student Portal</title>
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('lms-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.setAttribute('data-bs-theme', theme);
+      } catch (error) {}
+    })();
+  </script>
 
   <!-- Bootstrap CSS -->
   <link
@@ -37,6 +48,7 @@
 
   <!-- Global Styles (for shared utilities and animations) -->
   <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+  <script src="{% static 'js/theme_toggle.js' %}" defer></script>
 
   {% block extra_css %} {% endblock %}
 
@@ -48,7 +60,7 @@
     }
 
     .navbar-wrapper {
-      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      background: var(--shell-gradient, linear-gradient(135deg, #2c3e50 0%, #34495e 100%));
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       position: sticky;
       top: 0;
@@ -62,10 +74,10 @@
 
     .footer-wrapper {
       margin-top: auto;
-      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-      color: #ecf0f1;
+      background: var(--shell-gradient, linear-gradient(135deg, #2c3e50 0%, #34495e 100%));
+      color: var(--footer-text, #ecf0f1);
       padding: 40px 0 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid var(--footer-border, rgba(255, 255, 255, 0.1));
     }
   </style>
 </head>

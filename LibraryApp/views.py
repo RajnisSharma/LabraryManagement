@@ -315,7 +315,7 @@ def updt_issue_fun(request,id):
     books = Books.objects.filter(course_name=s1.stud_course)
     print(i1.start_date)
     if request.method == 'POST':
-        i1.stud_name = Student.objects.get(stud_name=request.POST['txtName'])
+        # i1.stud_name = Student.objects.get(stud_name=request.POST['txtName'])
         i1.book_name = Books.objects.get(book_name=request.POST['ddlBookName'])
         i1.start_date = request.POST['txtStartDate']
         i1.end_date = request.POST['txtEndDate']

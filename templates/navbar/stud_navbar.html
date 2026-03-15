@@ -19,7 +19,13 @@
         <li class="nav-item"><a class="nav-link" href="{% url 'getprof' %}"><i class="fas fa-user me-1"></i> Profile</a></li>
       </ul>
 
-      <ul class="navbar-nav align-items-center">
+      <ul class="navbar-nav align-items-center gap-2">
+        <li class="nav-item">
+          <button type="button" class="nav-link btn btn-sm nav-auth-btn theme-toggle-btn" data-theme-toggle aria-label="Switch theme">
+            <i class="fas fa-moon me-1" data-theme-icon></i>
+            <span class="d-none d-xl-inline" data-theme-label>Dark mode</span>
+          </button>
+        </li>
         <li class="nav-item"><a class="nav-link btn btn-sm btn-outline-danger ms-2" href="{% url 'log_out' %}"><i class="fas fa-sign-out-alt me-1"></i> Logout</a></li>
       </ul>
     </div>
@@ -28,7 +34,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const links = document.querySelectorAll('.navbar .nav-link');
+    const links = document.querySelectorAll('.navbar a.nav-link[href]');
     links.forEach(l => {
       if (l.href === window.location.href || window.location.pathname && l.getAttribute('href') && window.location.pathname.startsWith(new URL(l.href, window.location.origin).pathname)) {
         l.classList.add('active');
